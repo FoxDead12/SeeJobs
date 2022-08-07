@@ -1,5 +1,16 @@
 {
   "$schema": "./node_modules/nx/schemas/workspace-schema.json",
   "version": 2,
-  "projects": {}
+  "projects": {
+    "seejobs-app-api": "apps/seejobs-app-api",
+    "seejobs-app-mobile": "apps/seejobs-app-mobile",
+    "seejobs-app-mobile-e2e": "apps/seejobs-app-mobile-e2e",
+    "seejobs-backend-api-abstract-application": "libs/seejobs-backend-api-abstract-application",
+    "seejobs-backend-api-abstract-business": "libs/seejobs-backend-api-abstract-business",
+    "seejobs-backend-api-abstract-infraestructure": "libs/seejobs-backend-api-abstract-infraestructure",
+    "seejobs-backend-api-application": "libs/seejobs-backend-api-application",
+    "seejobs-backend-api-business": "libs/seejobs-backend-api-business",
+    "seejobs-backend-api-infraestructure": "libs/seejobs-backend-api-infraestructure",
+    "seejobs-backend-api-models": "libs/seejobs-backend-api-models"
+  }
 }

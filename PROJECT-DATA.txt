@@ -1,0 +1,62 @@
+Criar um Aplicação Mobile: SeeJobs
+
+Uma aplicação de calendarização, para permitir aos utilizadores marcarem os seus eventos, e tarefas para os dias.
+
+Necessidades Basicas:
+	-Utilizador
+		-Tem acesso a sua conta
+			-Email
+			-Password
+
+	-Criar Eventos
+		-Escolher Dia, Mês, Ano 
+		-Escolher Horas ? Opcional
+		-Descrição do Evento
+
+	-Editar Eventos
+
+	-Apagar Eventos
+
+Tecnologias Utilizadas:
+	-Nx
+		-Vou utilizar está ferramenta para gerir o workspace desta aplicação
+
+	-Nest Js
+		-Tecnologia vai ser utilizada para realizar o back-end da aplicação
+
+	-React Native
+		-Tecnologia utilizada para realizar o front-end da aplicação.
+
+	-MySql
+		-Tecnologia que vai ser utilizada para base de dados
+
+Design Layout:
+	-Colors
+		-Main: #40376E
+		-Second: #e8e8e8
+
+Entidades Negocio:
+	-Utilizador
+	-Evento
+		-Utilizador e Eventos tem uma relação entre elas
+	
+Layout Aplicação:
+	-Login
+	-Calendario
+
+Tabelas MySql
+	Utilizador
+		-Id
+		-Email
+		-Hash
+		-UniqueId
+		-Name
+		-LastLogin
+
+	Eventos
+		-Id
+		-Titulo
+		-Descrição
+		-Data
+		-Horas (Can Be Null)
+		-UniqueId do Utilizador

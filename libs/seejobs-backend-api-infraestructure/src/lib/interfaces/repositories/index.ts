@@ -1,0 +1,1 @@
+export { IReadOnlyUsersRepository } from "./IReadOnlyUsersRepository";

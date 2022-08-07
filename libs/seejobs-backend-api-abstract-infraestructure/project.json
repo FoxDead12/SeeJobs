@@ -1,0 +1,35 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/seejobs-backend-api-abstract-infraestructure/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/seejobs-backend-api-abstract-infraestructure",
+        "main": "libs/seejobs-backend-api-abstract-infraestructure/src/index.ts",
+        "tsConfig": "libs/seejobs-backend-api-abstract-infraestructure/tsconfig.lib.json",
+        "assets": ["libs/seejobs-backend-api-abstract-infraestructure/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "libs/seejobs-backend-api-abstract-infraestructure/**/*.ts"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/seejobs-backend-api-abstract-infraestructure"],
+      "options": {
+        "jestConfig": "libs/seejobs-backend-api-abstract-infraestructure/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
