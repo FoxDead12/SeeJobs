@@ -68,6 +68,27 @@ export async function CreateEvent(data: ICreateEventRequest): Promise<ICreateEve
     return;
 }
 
+
+export async function DeleteEvent(data: IDeleteEventRequest): Promise<IDeleteEventResponse | boolean> {
+
+    const tempHeader = {
+        ...headers,
+        'Cookie': "token=" + data.token + ";",
+    }
+
+    const result = await axios.post(`${baseUrl}/events/delete`,{title: data.titulo} , {headers: tempHeader})
+    .then(() => {
+        return true;
+    })
+    .catch((error) => {
+        const errorHandler = new ErroHandle(error.response.data.error);
+        return {error: error.response.data.error};
+    })
+
+    return result;
+
+}
+
 // Interfaces
 interface ILoginResquest {
 
@@ -118,6 +139,18 @@ interface ICreateEventResponse {
 
 }
 
+//--------
+
+interface IDeleteEventRequest {
+
+    titulo: string;
+    token: string;
+}
+
+interface IDeleteEventResponse {
+
+    error?: string;
+}
 
 class ErroHandle {
 

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { View } from "react-native";
 import { BottomMenu } from "../components/bottom-menu";
 import { Calendario } from "../components/calendario";
-import { GetAllEvents, IEvent } from "../services/Api";
+import { DeleteEvent, GetAllEvents, IEvent } from "../services/Api";
 import { StyleHomePage } from "../styles/pages/home";
 
 interface IHome {
@@ -48,6 +48,24 @@ export function Home(props: IHome) {
         props.onChangScreen(2);
     }
 
+    async function onDeleteEvent(event: IEvent): Promise<boolean> {
+
+        //Remover na aplicação 
+        //Remover na base de dados
+        const token = await AsyncStorage.getItem("token");
+        const result = await DeleteEvent({titulo: event.titulo, token});
+
+        if(result == true) {
+            
+            await setEvents(events.filter(item => item.titulo !== event.titulo))
+            return true;
+        }
+        else {
+            return false;
+        }
+        
+    }
+
     if(isFecthing == true) {
 
         return <></>
@@ -56,7 +74,7 @@ export function Home(props: IHome) {
         return(
             <View style={StyleHomePage.background}>
                 {/* <WelcomeUser userName="David Xavier"></WelcomeUser> */}
-                <Calendario eventos={events}></Calendario>
+                <Calendario deleteEvent={onDeleteEvent} eventos={events}></Calendario>
                 
                 <BottomMenu onLogout={onLogOut} onAddEvent={onAddEvent} ></BottomMenu>               
             </View>

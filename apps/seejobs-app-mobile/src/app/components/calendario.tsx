@@ -14,6 +14,8 @@ import { CloseIcon, TrashIcon } from "../icons_svgs/icons";
 interface ICalendario {
 
     eventos: IEvent[];
+    deleteEvent: (event: IEvent) => Promise<boolean>;
+
 }
 
 
@@ -74,6 +76,16 @@ export function Calendario(props: ICalendario) {
         setShowEvents(false)
     }
 
+    async function onDeleteEvent(event: IEvent) {
+
+        const result = await props.deleteEvent(event);
+        if(result == true) {
+
+            setEvents(events.filter(item => item.titulo != event.titulo));
+        }
+
+    }
+
     return(
         <View>
             <View style={StyleCalendario.calendarioContainer}>
@@ -92,7 +104,7 @@ export function Calendario(props: ICalendario) {
                 
             </View>
             
-            {showEvents ? <ShowEventsBox events={events} closeWindow={onCloseEvent}></ShowEventsBox> : <></>}
+            {showEvents ? <ShowEventsBox deleteEvent={onDeleteEvent} events={events} closeWindow={onCloseEvent}></ShowEventsBox> : <></>}
            
 
         </View>
@@ -364,6 +376,7 @@ interface IShowEventsBox {
 
     events: IEvent[];
     closeWindow: () => void;
+    deleteEvent: (event: IEvent) => void;
 }
 
 function ShowEventsBox (props: IShowEventsBox) {
@@ -398,6 +411,9 @@ function ShowEventsBox (props: IShowEventsBox) {
                         renderItem={({item}) => 
                             <View style={StyleShowEventsBox.eventContainer}>
                                 
+                                <View style={{position: 'absolute', right: 2, zIndex: 1}}>
+                                    <ButtonCalendario onClick={() => props.deleteEvent(item)}><TrashIcon size={30} color={"red"}/></ButtonCalendario>
+                                </View>
                                 <Text style={StyleShowEventsBox.text} >Name: {item.titulo}</Text>
                                 <Text style={StyleShowEventsBox.text}>Date: {item.data.toString()}</Text>
                                 {item.horas ? <Text style={StyleShowEventsBox.text}>Time: {item?.horas.toString()}</Text> : <></>}

@@ -8,6 +8,7 @@ export const ENDPOINTS = {
     EVENTS: {
         BASE: '/events',
         GETALL: '/getAll',
-        CREATE: '/create'
+        CREATE: '/create',
+        DELETE: '/delete'
     }
 }

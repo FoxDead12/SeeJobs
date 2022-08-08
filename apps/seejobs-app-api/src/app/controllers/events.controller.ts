@@ -1,8 +1,8 @@
-import { Body, Controller, Post, UseGuards } from "@nestjs/common";
+import { Body, Controller, Delete, Post, UseGuards } from "@nestjs/common";
 import { ENDPOINTS } from "../end-points";
 import { DI } from '../dependency-injector';
 import { Token, TokenGuard } from "../guards/token.guard";
-import { CreateNewEventRequest } from "@see-jobs-2/seejobs-backend-api-models/request";
+import { CreateNewEventRequest, DeleteEventRequest } from "@see-jobs-2/seejobs-backend-api-models/request";
 import { BaseController } from "./base.controller";
 
 
@@ -30,4 +30,11 @@ export class EventsController extends BaseController {
     return service.GetAllEvents(this.decryptToken(token).uniqueId);
   }
 
+  @Post(ENDPOINTS.EVENTS.DELETE) 
+  DeleteEvent(@Body() request: DeleteEventRequest, @Token() token: string) {
+
+    request.uniqueId = this.decryptToken(token).uniqueId;
+    const service = this.DI.servicesFactory.IEventsCommandServies;
+    return service.DeleteEvent(request);
+  }
 }

@@ -7,6 +7,7 @@ import { IServiceFactory } from "../../interfaces/factories/IServiceFactory";
 import { InfrastructureInterfaces } from "../../interfaces/InfrastructureInterfaces";
 import { BaseEventCommand } from "../base/BaseEventCommand";
 import { CreateNewEventCommand } from "./CreateNewEventCommand";
+import { DeleteEventCommand } from "./DeleteEventCommand";
 
 export class EventsCommandsHandler extends BaseCommandHandler implements ICommandHandler<BaseEventCommand> {
     
@@ -39,6 +40,18 @@ class CreateNewEventCommandHandlerStrategy implements ICommandHandlerStrategy<Cr
 
 }
 
+class DeleteEventCommandHandlerStrategy implements ICommandHandlerStrategy<DeleteEventCommand> {
+    async Handle(command: DeleteEventCommand, handler: BaseCommandHandler): Promise<void> {
+        await handler.BaseHandle(async (transaction) => {
+            const eventAggregate = (handler._businessFactory as IBusinessFactory).CreateEventAggregate(transaction);
+            await eventAggregate.Delete({titulo: command.title, userUniqueId: command.uniqueId} as IEvent)
+        });
+    }
+
+
+}
+
 export const eventsCommandsHandlerStrategies: { [key : string]: ICommandHandlerStrategy<BaseEventCommand> } = {
-    [CreateNewEventCommand.name]: new CreateNewEventCommandHandlerStrategy()
+    [CreateNewEventCommand.name]: new CreateNewEventCommandHandlerStrategy(),
+    [DeleteEventCommand.name]: new DeleteEventCommandHandlerStrategy()
 };

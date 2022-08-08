@@ -7,6 +7,7 @@
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "strictPropertyInitialization": false,
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
@@ -16,9 +17,6 @@
     "strictNullChecks": false,
     "baseUrl": ".",
     "paths": {
-      "@see-jobs-2/seejobs-backend-api-abstract-application": [
-        "libs/seejobs-backend-api-abstract-application/src/index.ts"
-      ],
       "@see-jobs-2/seejobs-backend-api-abstract-application/commands": [
         "libs/seejobs-backend-api-abstract-application/src/lib/commands/index.ts"
       ],
@@ -37,9 +35,6 @@
       "@see-jobs-2/seejobs-backend-api-abstract-application/interfaces/queries": [
         "libs/seejobs-backend-api-abstract-application/src/lib/interfaces/queries/index.ts"
       ],
-      "@see-jobs-2/seejobs-backend-api-abstract-business": [
-        "libs/seejobs-backend-api-abstract-business/src/index.ts"
-      ],
       "@see-jobs-2/seejobs-backend-api-abstract-business/enitys": [
         "libs/seejobs-backend-api-abstract-business/src/lib/entetis/index.ts"
       ],
@@ -51,9 +46,6 @@
       ],
       "@see-jobs-2/seejobs-backend-api-abstract-business/interfaces/repositories": [
         "libs/seejobs-backend-api-abstract-business/src/lib/interfaces/repositories/index.ts"
-      ],
-      "@see-jobs-2/seejobs-backend-api-abstract-infraestructure": [
-        "libs/seejobs-backend-api-abstract-infraestructure/src/index.ts"
       ],
       "@see-jobs-2/seejobs-backend-api-abstract-infraestructure/interfaces/factories": [
         "libs/seejobs-backend-api-abstract-infraestructure/src/lib/interfaces/factories/index.ts"
@@ -70,9 +62,6 @@
       "@see-jobs-2/seejobs-backend-api-abstract-infraestructure/mappers": [
         "libs/seejobs-backend-api-abstract-infraestructure/src/lib/mappers/index.ts"
       ],
-      "@see-jobs-2/seejobs-backend-api-application": [
-        "libs/seejobs-backend-api-application/src/index.ts"
-      ],
       "@see-jobs-2/seejobs-backend-api-application/factories": [
         "libs/seejobs-backend-api-application/src/lib/factories/index.ts"
       ],
@@ -81,9 +70,6 @@
       ],
       "@see-jobs-2/seejobs-backend-api-application/services": [
         "libs/seejobs-backend-api-application/src/lib/services/index.ts"
-      ],
-      "@see-jobs-2/seejobs-backend-api-business": [
-        "libs/seejobs-backend-api-business/src/index.ts"
       ],
       "@see-jobs-2/seejobs-backend-api-business/factories": [
         "libs/seejobs-backend-api-business/src/lib/factories/index.ts"
@@ -100,9 +86,6 @@
       "@see-jobs-2/seejobs-backend-api-business/interfaces/factories": [
         "libs/seejobs-backend-api-business/src/lib/interfaces/factories/index.ts"
       ],
-      "@see-jobs-2/seejobs-backend-api-infraestructure": [
-        "libs/seejobs-backend-api-infraestructure/src/index.ts"
-      ],
       "@see-jobs-2/seejobs-backend-api-infraestructure/factories": [
         "libs/seejobs-backend-api-infraestructure/src/lib/factories/index.ts"
       ],
@@ -111,9 +94,6 @@
       ],
       "@see-jobs-2/seejobs-backend-api-infraestructure/mappers": [
         "libs/seejobs-backend-api-infraestructure/src/lib/mappers/index.ts"
-      ],
-      "@see-jobs-2/seejobs-backend-api-models": [
-        "libs/seejobs-backend-api-models/src/index.ts"
       ],
       "@see-jobs-2/seejobs-backend-api-models/dtos": [
         "libs/seejobs-backend-api-models/src/lib/dtos/index.ts"

@@ -4,5 +4,4 @@ import { IEvent } from "./IEvent";
 /* eslint-disable @typescript-eslint/no-empty-interface */
 export interface IEventsAggregate extends IAggregate<IEvent>{
 
-    
 }

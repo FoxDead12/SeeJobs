@@ -64,8 +64,26 @@ export class EventsRepository extends BaseRepository<IEvent, DtoEvent> implement
     public Delete(entity: IEvent): Promise<void>;
     public Delete(entities: IEvent[]): Promise<void>;
     public Delete(data: number | IEvent | IEvent[]): Promise<void>;
-    public Delete(data: unknown): Promise<void> {
-        throw new Error("Method not implemented.");
+    public async Delete(data: any): Promise<void> {
+
+        const runner = this._runners[this._transaction];
+
+
+        if(typeof data === 'number') {
+        await runner.manager.softDelete(DtoEvent, {id: data});
+        } else if((data as IEvent[]).length) {
+        const promises: Promise<unknown>[] = [];
+
+        (data as IEvent[]).forEach(x => {
+            promises.push(runner.manager.softDelete(DtoEvent, {id: x.id}));
+        });
+
+        await Promise.all(promises);
+        } else {
+        const entity = (data as IEvent);
+        await runner.manager.delete(DtoEvent, entity);
+        }
+
     }
 
 }

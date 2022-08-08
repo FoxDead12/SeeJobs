@@ -1,8 +1,9 @@
 {
-  "name": "see-jobs-2",
+  "name": "@see-jobs-2",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
+    "nx": "nx",
     "start": "nx serve",
     "build": "nx build",
     "test": "nx test",
@@ -23,7 +24,7 @@
     "@nrwl/jest": "14.4.3",
     "@nrwl/linter": "14.4.3",
     "@nrwl/nest": "^14.4.3",
-    "@nrwl/node": "14.4.3",
+    "@nrwl/node": "^14.4.3",
     "@nrwl/react-native": "^14.4.3",
     "@nrwl/web": "14.4.3",
     "@nrwl/workspace": "14.4.3",
