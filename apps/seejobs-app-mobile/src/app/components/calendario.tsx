@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-inferrable-types */
 /* eslint-disable prefer-const */
-import React, { ReactElement, useEffect, useState } from "react";
-import { View, Text, TouchableNativeFeedback, FlatList, TouchableNativeFeedbackBase, StyleProp, ViewStyle } from "react-native";
+import React, { ReactElement, useEffect, useRef, useState } from "react";
+import { View, Text, TouchableNativeFeedback, FlatList, TouchableNativeFeedbackBase, StyleProp, ViewStyle, ScrollView } from "react-native";
 import { MainColor, SecondColor } from "../styles/collors";
 import { StyleCalendario, StyleDaysWeek, StyleMonthAndYearText, StyleMonthDays, StyleShowEventsBox } from "../styles/components/calendario";
 import { LeftArrow, RightArrow } from "../icons_svgs/arrows";
@@ -382,6 +382,7 @@ interface IShowEventsBox {
 function ShowEventsBox (props: IShowEventsBox) {
 
     const [day, setDay] = useState<string>();
+    const scrollViewRef = useRef<null | ScrollView>(null);
 
     useEffect(() => {
 
@@ -406,24 +407,39 @@ function ShowEventsBox (props: IShowEventsBox) {
                         <ButtonCalendario onClick={props.closeWindow}><CloseIcon/></ButtonCalendario>
                     </View>
 
-                    <FlatList
+                    <ScrollView ref={(ref) => {scrollViewRef.current = ref;}} contentInsetAdjustmentBehavior="automatic" style={{ zIndex: 4, backgroundColor: 'blue'}} scrollEnabled={true}>
+                        {
+                            props.events.map((item, i) => {
+                                return(
+                                    <View style={StyleShowEventsBox.eventContainer} key={i}>
+                                
+                                    <View style={{position: 'absolute', right: 2, zIndex: 1}}>
+                                        <ButtonCalendario onClick={() => props.deleteEvent(item)}><TrashIcon size={30} color={"red"}/></ButtonCalendario>
+                                    </View>
+                                    <Text style={StyleShowEventsBox.text} >Name: {item.titulo}</Text>
+                                    <Text style={StyleShowEventsBox.text}>Date: {item.data.toString()}</Text>
+                                    {item.horas ? <Text style={StyleShowEventsBox.text}>Time: {item?.horas.toString()}</Text> : <></>}
+                                    <Text style={StyleShowEventsBox.text}>Description:</Text>
+                                    <Text style={StyleShowEventsBox.text}>{item.descricao}</Text>
+                                    </View>
+                                )
+                            })
+                        }
+                    </ScrollView>
+
+                    {/* <FlatList
+                        ref={(ref) => {
+                            scrollViewRef.current = ref;
+                        }}
+                        
+                        scrollEnabled={true}
+                    
                         data={props.events}
                         renderItem={({item}) => 
-                            <View style={StyleShowEventsBox.eventContainer}>
-                                
-                                <View style={{position: 'absolute', right: 2, zIndex: 1}}>
-                                    <ButtonCalendario onClick={() => props.deleteEvent(item)}><TrashIcon size={30} color={"red"}/></ButtonCalendario>
-                                </View>
-                                <Text style={StyleShowEventsBox.text} >Name: {item.titulo}</Text>
-                                <Text style={StyleShowEventsBox.text}>Date: {item.data.toString()}</Text>
-                                {item.horas ? <Text style={StyleShowEventsBox.text}>Time: {item?.horas.toString()}</Text> : <></>}
-                                <Text style={StyleShowEventsBox.text}>Description:</Text>
-                                <Text style={StyleShowEventsBox.text}>{item.descricao}</Text>
-                            </View>
                         }
 
                         style={{maxHeight: '100%'}}
-                    />
+                    /> */}
                     
                 </View>
             </View>
